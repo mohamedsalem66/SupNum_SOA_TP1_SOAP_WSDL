@@ -1,0 +1,89 @@
+# Compte rendu – Partie A : Développement d’un service Web SOAP (Code First)
+
+## 1. Objectif
+
+L'objectif de cette partie est de créer un service Web SOAP en utilisant Java et Maven.
+
+Ce service permet de gérer les opérations d'emprunt et de retour des livres dans une bibliothèque.
+
+## 2. Création du projet
+
+Nous avons créé un projet Java nommé `emprunt-codefirst`.
+
+Nous avons utilisé les outils suivants :
+- Java : pour développer le service.
+- Maven : pour gérer le projet et ses dépendances.
+- JAX-WS (Metro) : pour créer et publier le service SOAP.
+- Postman : pour tester les requêtes SOAP.
+
+## 3. Création des classes Java
+
+Nous avons créé le package :
+
+`mr.supnum.bib`
+
+Dans ce package, nous avons créé les classes suivantes :
+
+- `Emprunt.java` : représente les informations d'un emprunt.
+- `EmpruntService.java` : contient les opérations du service.
+- `LivreIndisponibleException.java` : représente une erreur lorsqu'un livre n'est pas disponible.
+- `LivreIndisponibleInfo.java` : contient les informations liées à cette erreur.
+
+## 4. Publication du service SOAP
+
+Nous avons lancé le service avec Maven.
+
+Le service est accessible à l'adresse suivante :
+
+`http://localhost:8080/bib/EmpruntService`
+
+Le fichier WSDL est disponible à cette adresse :
+
+`http://localhost:8080/bib/EmpruntService?wsdl`
+
+Le WSDL décrit le service, ses opérations, ses paramètres et ses réponses.
+
+## 5. Vérification du WSDL
+
+Nous avons ouvert le fichier WSDL dans le navigateur.
+
+Nous avons vérifié :
+- Le nom du service : `EmpruntService`.
+- Le nom du port : `EmpruntPort`.
+- Les opérations disponibles : `emprunterLivre` et `rendreLivre`.
+- L'adresse du service.
+
+## 6. Test avec Postman
+
+Nous avons utilisé Postman pour envoyer des requêtes SOAP au service.
+
+Pour effectuer un test, nous avons :
+1. Choisi la méthode POST.
+2. Saisi l'adresse du service.
+3. Ajouté le header `Content-Type: text/xml; charset=utf-8`.
+4. Choisi Body puis raw et XML.
+5. Écrit le message SOAP.
+6. Envoyé la requête avec Send.
+
+### Exemple de résultat
+
+Lors d'un test d'emprunt, le service a retourné une réponse contenant :
+
+- Le numéro d'emprunt : `E-2026-0812`.
+- La date de retour : `2026-12-08`.
+
+Le code HTTP retourné était `200 OK`, ce qui indique que la requête a été traitée avec succès.
+
+## 7. Gestion des erreurs SOAP
+
+Le service prévoit une exception appelée `LivreIndisponibleException`.
+
+Elle permet de signaler qu'un livre ne peut pas être emprunté lorsqu'il n'est pas disponible.
+
+## 8. Conclusion
+
+Dans cette partie, nous avons développé et publié un service Web SOAP avec Java et JAX-WS.
+
+Nous avons également généré et vérifié le WSDL, puis testé le service avec Postman.
+
+Cette partie nous a permis de comprendre le fonctionnement de SOAP, le rôle du WSDL et l'échange de messages XML entre un client et un service Web.
